@@ -42,7 +42,13 @@ const ReturnItemTable = ({
         <td className="py-4 px-6">
           <span className="flex flex-col">
             <span className="font-semibold mb-1">{name}</span>
-            <span className="">{description}</span>
+            <span className="">
+              {description.length >= 20 ? (
+                <span>{description.substring(0, 33)}...</span>
+              ) : (
+                <span className="whitespace-nowrap">{description}</span>
+              )}
+            </span>
           </span>
         </td>
         <td className="py-4 px-6">
