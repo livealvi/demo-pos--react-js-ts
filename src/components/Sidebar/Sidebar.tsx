@@ -130,11 +130,11 @@ const routes = [
         name: "Due List",
         icon: <GiReceiveMoney />,
       },
-      {
-        path: "/lend/view/all",
-        name: "Lend List",
-        icon: <GiPayMoney />,
-      },
+      // {
+      //   path: "/lend/view/all",
+      //   name: "Lend List",
+      //   icon: <GiPayMoney />,
+      // },
     ],
   },
   {
