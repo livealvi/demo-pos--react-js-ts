@@ -266,7 +266,7 @@ const FilterDue = () => {
                   className="close_modal text-[20px] text-black hover:cursor-pointer"
                 />
               </div>
-              <div className="modal_body m-4">
+              <div className="modal_body m-4 overflow-y-scroll overflow-x-scroll scroll-smooth">
                 <div className="order_infos m-3 text-sm flex justify-between">
                   <div className="left items-start">
                     <div className="flex flex-col">
@@ -466,7 +466,7 @@ const FilterDue = () => {
                   className="close_modal text-[20px] text-black hover:cursor-pointer"
                 />
               </div>
-              <div className="modal_body m-4">
+              <div className="modal_body m-4 overflow-y-scroll overflow-x-scroll scroll-smooth">
                 <div className="order_infos m-3 text-sm flex justify-between">
                   <div className="left items-start">
                     <div className="flex flex-col">
@@ -609,15 +609,16 @@ const FilterDue = () => {
                               <span className="font-black pt-1">
                                 Description:
                               </span>
-                              <span className="text-justify">
-                                {editDue.description === null ? (
-                                  "No Desc."
-                                ) : (
-                                  <span className="max-w-[20%]">
-                                    {editDue.description}
-                                  </span>
-                                )}
-                              </span>
+                              {disable ? (
+                                <span className=" text-justify">
+                                  {editDue.description === null ||
+                                  editDue.description === ""
+                                    ? "No Desc."
+                                    : editDue.description}
+                                </span>
+                              ) : (
+                                "No Desc."
+                              )}
                             </span>
                             <span className="flex flex-col">
                               <span className="px-2 capitalize font-black flex flex-col">
@@ -695,24 +696,21 @@ const FilterDue = () => {
                                     {Number(dueItems.amount).toFixed(2)}
                                   </span>
                                 </span>
-                                {disable ? (
+                                {editDue.collection === undefined ? (
+                                  ""
+                                ) : (
                                   <span>
                                     <span className="flex justify-between mt-1">
                                       <span className="">New Paid&nbsp;:</span>
-
-                                      {disable ? (
-                                        <span className="text-bold italic mx-3">
-                                          ({dueItems.collection} +{" "}
-                                          <span className="text-green-600">
-                                            {Number(editDue.collection).toFixed(
-                                              2
-                                            )}
-                                          </span>
-                                          )
+                                      <span className="text-bold italic mx-3">
+                                        ({dueItems.collection} +{" "}
+                                        <span className="text-green-600">
+                                          {Number(editDue.collection).toFixed(
+                                            2
+                                          )}
                                         </span>
-                                      ) : (
-                                        ""
-                                      )}
+                                        )
+                                      </span>
 
                                       <span
                                         className={`${
@@ -770,8 +768,6 @@ const FilterDue = () => {
                                       </span>
                                     </span>
                                   </span>
-                                ) : (
-                                  ""
                                 )}
                               </span>
                             </span>

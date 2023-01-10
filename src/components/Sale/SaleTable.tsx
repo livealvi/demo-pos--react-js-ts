@@ -45,7 +45,15 @@ const SaleTable = ({
           {1 + count}
         </th>
         <td className="py-2 px-5">{name}</td>
-        <td className="py-2 px-3">{description}</td>
+        <td className="py-2 px-3">
+          <td className="py-2 px-6">
+            {description.length >= 20 ? (
+              <span>{description.substring(0, 33)}...</span>
+            ) : (
+              <span className="whitespace-nowrap">{description}</span>
+            )}
+          </td>
+        </td>
         <td className="py-2 px-3">{categoryName}</td>
         <td className="py-2 px-4">{costing}</td>
         <td className="py-2 px-4">{wholesale}</td>

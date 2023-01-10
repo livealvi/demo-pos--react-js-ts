@@ -46,17 +46,19 @@ const FilterDueTable = ({
         </td>
         <td
           className={`${
-            collection >= amount ? "text-green-600" : "text-red-600"
+            collection <= amount ? "text-green-600" : "text-red-600"
           } font-semibold py-2 px-6 whitespace-nowrap`}
         >
           {amount}
         </td>
         <td
           className={`${
-            collection >= amount ? "text-green-600" : "text-red-600"
+            collection >= amount && amount === collection
+              ? "text-green-600"
+              : "text-red-600"
           } font-semibold py-2 px-6 whitespace-nowrap`}
         >
-          {collection >= amount ? (
+          {collection >= amount && amount === collection ? (
             <span>Full Paid</span>
           ) : (
             <div>
@@ -64,7 +66,7 @@ const FilterDueTable = ({
                 <span className="whitespace-nowrap">Full Due</span>
               ) : (
                 <span>
-                  {collection >= amount ? (
+                  {collection <= amount ? (
                     ""
                   ) : (
                     <span className="text-green-600">{collection}</span>
@@ -76,14 +78,16 @@ const FilterDueTable = ({
         </td>
         <td
           className={`${
-            collection >= amount ? "text-green-600" : "text-red-600"
+            collection >= amount && amount === collection
+              ? "text-green-600"
+              : "text-red-600"
           } font-semibold py-2 px-6 whitespace-nowrap`}
         >
-          {collection >= amount ? (
+          {collection >= amount && amount === collection ? (
             "Full Paid"
           ) : (
             <div>
-              {collection >= amount ? (
+              {collection == 0.0 ? (
                 <span className="whitespace-nowrap">Full Due</span>
               ) : (
                 <span className="text-orange-500">{remain}</span>
