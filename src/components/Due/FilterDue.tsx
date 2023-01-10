@@ -16,7 +16,7 @@ import { toast } from "react-hot-toast";
 import service from "../../hooks/service";
 import { IdContext, StockContext } from "../../App";
 import { VscChromeClose } from "react-icons/vsc";
-import FilterDueItemTable from "./FilterDueItemTable";
+
 import Moment from "react-moment";
 import { AiFillPrinter } from "react-icons/ai";
 import moment from "moment-timezone";
@@ -75,11 +75,12 @@ const FilterDue = () => {
     setModal(!modal);
   };
   const toggleEditModal = () => {
-    setModalEdit(!modalEdit);
     reset();
+    setModalEdit(!modalEdit);
     setEditDue([]);
     setAmountTotal([]);
     setAmountRemain([]);
+    setDisable(false);
   };
 
   const handleChange = (e: any) => {
@@ -321,31 +322,6 @@ const FilterDue = () => {
                   <div className="right">
                     <div className="flex flex-col items-end">
                       <span className="my-1">
-                        <span className="">Full Paid:&nbsp;</span>
-                        {dueItems.fullPaidDate === null ? (
-                          "--/--/--- - -- : --"
-                        ) : (
-                          <span>
-                            <span className="font-medium">
-                              <Moment
-                                tz="Asia/Dhaka"
-                                format="DD/MM/YYYY"
-                                date={dueItems?.fullPaidDate}
-                              />
-                            </span>
-                            <span className="mx-1 font-medium">-</span>
-                            <span className="font-medium">
-                              <Moment
-                                tz="Asia/Dhaka"
-                                format="hh:mm A"
-                                date={dueItems?.fullPaidDate}
-                              />
-                            </span>
-                          </span>
-                        )}
-                      </span>
-
-                      <span className="my-1">
                         <span className="">Purchased by:&nbsp;</span>
                         <span
                           className={`${
@@ -545,31 +521,6 @@ const FilterDue = () => {
 
                   <div className="right">
                     <div className="flex flex-col items-end">
-                      <span className="my-1">
-                        <span className="">Full Paid:&nbsp;</span>
-                        {dueItems.fullPaidDate === null ? (
-                          "--/--/--- - -- : --"
-                        ) : (
-                          <span>
-                            <span className="font-medium">
-                              <Moment
-                                tz="Asia/Dhaka"
-                                format="DD/MM/YYYY"
-                                date={dueItems?.fullPaidDate}
-                              />
-                            </span>
-                            <span className="mx-1 font-medium">-</span>
-                            <span className="font-medium">
-                              <Moment
-                                tz="Asia/Dhaka"
-                                format="hh:mm A"
-                                date={dueItems?.fullPaidDate}
-                              />
-                            </span>
-                          </span>
-                        )}
-                      </span>
-
                       <span className="my-1">
                         <span className="">Purchased by:&nbsp;</span>
                         <span
@@ -967,7 +918,7 @@ const FilterDue = () => {
                   />
                 </div>
               </div>
-              <div className="table_box overflow-y-scroll overflow-x-scroll scroll-smooth h-[75vh] rounded-lg hover:scrollbar">
+              <div className="table_box overflow-y-scroll overflow-x-scroll scroll-smooth h-[75vh] rounded-lg scrollbar">
                 {dues?.dues?.length === 0 ? (
                   <div className="h-[60vh] flex justify-center items-center text-gray-400">
                     <span className="mr-5">
@@ -1005,7 +956,7 @@ const FilterDue = () => {
                           Id
                         </th>
                         <th scope="col" className="py-3 px-6 whitespace-nowrap">
-                          Customer Name
+                          Name
                         </th>
                         <th scope="col" className="py-3 px-6">
                           Type
@@ -1028,9 +979,6 @@ const FilterDue = () => {
                         <th scope="col" className="py-3 px-6 whitespace-nowrap">
                           Last Paid
                         </th>
-                        <th scope="col" className="py-3 px- whitespace-nowrap">
-                          Full Paid
-                        </th>
                         <th scope="col" className="py-3 px-6">
                           DESC.
                         </th>
@@ -1039,7 +987,7 @@ const FilterDue = () => {
                         </th>
                       </tr>
                     </thead>
-                    <tbody className="">
+                    <tbody className="text-[13px]">
                       {dues?.dues
                         ?.filter((due: any) => {
                           if (due === "") {

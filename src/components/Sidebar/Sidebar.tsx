@@ -54,28 +54,28 @@ const routes = [
       },
     ],
   },
-  {
-    path: "/barcode",
-    name: "Barcode",
-    icon: <AiOutlineBarcode />,
-    subRoutes: [
-      {
-        path: "/barcode/view/all",
-        name: "All Barcode",
-        icon: <IoMdBarcode />,
-      },
-      {
-        path: "/barcode/add",
-        name: "Add Barcode",
-        icon: <RiBarcodeBoxFill />,
-      },
-      // {
-      //   path: "/stock/stock/out",
-      //   name: "Out of Stock",
-      //   icon: <TbPackageOff />,
-      // },
-    ],
-  },
+  // {
+  //   path: "/barcode",
+  //   name: "Barcode",
+  //   icon: <AiOutlineBarcode />,
+  //   subRoutes: [
+  //     {
+  //       path: "/barcode/view/all",
+  //       name: "All Barcode",
+  //       icon: <IoMdBarcode />,
+  //     },
+  //     {
+  //       path: "/barcode/add",
+  //       name: "Add Barcode",
+  //       icon: <RiBarcodeBoxFill />,
+  //     },
+  //     // {
+  //     //   path: "/stock/stock/out",
+  //     //   name: "Out of Stock",
+  //     //   icon: <TbPackageOff />,
+  //     // },
+  //   ],
+  // },
   {
     path: "/stock",
     name: "Stock",
@@ -147,11 +147,11 @@ const routes = [
         name: "All Customer",
         icon: <HiUsers />,
       },
-      {
-        path: "/customer/add",
-        name: "Add Customer",
-        icon: <RiUserShared2Fill />,
-      },
+      // {
+      //   path: "/customer/add",
+      //   name: "Add Customer",
+      //   icon: <RiUserShared2Fill />,
+      // },
     ],
   },
   {

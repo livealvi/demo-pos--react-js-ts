@@ -9,7 +9,7 @@ const SaleCart = ({ product, handelRemove, setCart }: any) => {
 
   return (
     <>
-      <tr>
+      <tr className="hover:bg-[#f0f4f8] border-b border-gray-300 text-center hover:text-black last:border-b-0">
         <td className="py-2 px-3">
           <span className="flex flex-col">
             <span className="font-semibold">{name}</span>

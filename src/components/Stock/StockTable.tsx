@@ -44,7 +44,7 @@ const StockTable = ({
         </th>
         {/* <td className="py-2 px-6">{1 + count}</td> */}
         <td className="py-2 px-6 whitespace-nowrap">{name}</td>
-        <td className="py-2 px-6">{description.substring(0, 33)}...</td>
+        <td className="py-2 px-6">{description}</td>
         <td className="py-2 px-6">{mrp}</td>
         <td className="py-2 px-6">{costing}</td>
         <td className="py-2 px-6">{wholesale}</td>

@@ -42,7 +42,7 @@ const ReturnItemTable = ({
         <td className="py-4 px-6">
           <span className="flex flex-col">
             <span className="font-semibold mb-1">{name}</span>
-            <span className="">{description.substring(0, 50)}...</span>
+            <span className="">{description}</span>
           </span>
         </td>
         <td className="py-4 px-6">
