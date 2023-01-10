@@ -1,7 +1,7 @@
 import React from "react";
 
 const OrderItemsTable = ({ count, orderItem, orderItems }: any) => {
-  const { id, name, quantity, subtotal } = orderItem;
+  const { id, name, quantity, description, subtotal } = orderItem;
   // console.log(orderItem);
   // console.log(orderItems.length);
 
@@ -12,7 +12,18 @@ const OrderItemsTable = ({ count, orderItem, orderItems }: any) => {
           {1 + count}
         </th>
 
-        <td className="py-2 px-6">{name}</td>
+        <td className="py-2 px-6">
+          <span className="flex flex-col">
+            <span className="font-semibold mb-1">{name}</span>
+            <span className="">
+              {description.length >= 20 ? (
+                <span>{description.substring(0, 33)}...</span>
+              ) : (
+                <span className="whitespace-nowrap">{description}</span>
+              )}
+            </span>
+          </span>
+        </td>
         <td className="py-2 px-6">{quantity}</td>
         <td className="py-2 px-6">{Number(subtotal / quantity).toFixed(2)}</td>
         <td className="py-2 px-6">{subtotal}</td>

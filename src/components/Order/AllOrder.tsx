@@ -36,9 +36,11 @@ const AllOrder = () => {
 
   const toggleModal = () => {
     setModal(!modal);
+    setOrderItems([]);
   };
   const toggleReturnModal = () => {
     setReturnModal(!returnModal);
+    setOrderItems([]);
   };
 
   const buttonDisable = () => {
