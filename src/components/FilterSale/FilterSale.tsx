@@ -453,18 +453,6 @@ const FilterSale = () => {
                         <span className="text-gray-600">Cash</span>
                       </div>
                     </div>
-
-                    <div className="flex justify-end px-5 py-3">
-                      <button
-                        onClick={() => window.print()}
-                        className="flex justify-center items-center font-[500] bg-red-500 text-white hover:bg-red-400 hover:text-white rounded-md py-1 px-3 whitespace-nowrap"
-                      >
-                        <span>
-                          <AiFillPrinter className="" />
-                        </span>
-                        <span className="ml-2">Print Memo</span>
-                      </button>
-                    </div>
                   </div>
                 </div>
               </div>

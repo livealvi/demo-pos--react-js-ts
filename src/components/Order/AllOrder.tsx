@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { NavLink, useNavigate, useParams } from "react-router-dom";
 import CheckRole from "../../hooks/CheckRole";
 import useAuth from "../../hooks/useAuth";
@@ -18,6 +18,8 @@ import { AiFillPrinter, AiOutlineClose } from "react-icons/ai";
 import moment from "moment-timezone";
 import ReturnItemTable from "./ReturnItemTable";
 import { FadeLoader } from "react-spinners";
+import ReadyToPrintTable from "./ReadyToPrintTable";
+import ReactToPrint from "react-to-print";
 
 const AllOrder = () => {
   let [idData, setIdData] = useContext(IdContext);
@@ -27,17 +29,27 @@ const AllOrder = () => {
   const [isLoaded, setIsLoaded] = useState<boolean>(false);
   const [search, setSearch] = useState("" as any);
   const [modal, setModal] = useState<boolean>(false);
+  const [modalPrint, setModalPrint] = useState<boolean>(false);
   const [returnModal, setReturnModal] = useState<boolean>(false);
   const [disable, setDisable] = useState<boolean>(false);
   const [disable2, setDisable2] = useState<boolean>(false);
   const [customPicker, setCustomPicker] = useState("" as any);
   //return-product
   const [returnedProducts, setReturnedProducts] = useState([] as any);
+  const [shopName, setShopName] = useState([] as any);
+
+  const componentRef = useRef(null);
 
   const toggleModal = () => {
     setModal(!modal);
     setOrderItems([]);
   };
+
+  const toggleModalPrint = () => {
+    setModalPrint(!modalPrint);
+    setOrderItems([]);
+  };
+
   const toggleReturnModal = () => {
     setReturnModal(!returnModal);
     setOrderItems([]);
@@ -82,6 +94,19 @@ const AllOrder = () => {
     setUpdateData((v: number) => v + 1);
     navigate(`/order/view/all`);
   };
+
+  useEffect(() => {
+    axios
+      .get(`${url}/api/info/1`)
+      .then((res: any) => {
+        setShopName(() => res.data);
+        return;
+      })
+      .catch((error) => {
+        const err = error as AxiosError;
+        //console.log(err);
+      });
+  }, [updateData]);
 
   useEffect(() => {
     axios
@@ -219,6 +244,285 @@ const AllOrder = () => {
 
   return (
     <>
+      {/* order print detail */}
+      {modalPrint && (
+        <div className="modal h-full w-full fixed bg-white z-10">
+          <div className="overlay">
+            <div className="modal-content h-full w-full bg-white">
+              {orderItems.length === 0 ? (
+                <span>
+                  <FadeLoader color="#FFF" />
+                </span>
+              ) : (
+                <span>
+                  <div className="modal_head flex items-center justify-between px-7 py-2 border-b border-b-gray-200 hover">
+                    <span className="w-full flex justify-between items-center">
+                      <span className="font-[600] text-[20px] text-gray-800">
+                        Ready To Print&nbsp;:&nbsp;
+                        <span className="capitalize">
+                          {orderItems[0].order.orderId}
+                        </span>
+                      </span>
+                      <span className="flex justify-end items-center">
+                        <div className="flex justify-end pr-5">
+                          <ReactToPrint
+                            trigger={() => (
+                              <button className="flex justify-center items-center font-[500] bg-red-500 text-white hover:bg-red-400 hover:text-white rounded-md py-1 px-3 whitespace-nowrap">
+                                <span>
+                                  <AiFillPrinter className="" />
+                                </span>
+                                <span className="ml-2">Print Memo</span>
+                              </button>
+                            )}
+                            content={() => componentRef.current}
+                          />
+                        </div>
+                        <VscChromeClose
+                          onClick={toggleModalPrint}
+                          className="close_modal text-[20px] text-black hover:cursor-pointer"
+                        />
+                      </span>
+                    </span>
+                  </div>
+                  <div ref={componentRef} className="modal_body m-4 p-5">
+                    <div className="flex flex-col justify-between">
+                      <div className="flex flex-col items-center">
+                        <span className="flex flex-col items-center">
+                          <span className="text-[24px] font-black">
+                            {shopName?.info?.name}
+                          </span>
+                          <span className="mb-1">{shopName?.info?.tag}</span>
+                          {/* <span>
+                            Founder:
+                            <span className="ml-1 font-bold">
+                              Md. Showkotuzzaman (Robi)
+                            </span>
+                          </span> */}
+                          {/* <span>
+                            Pro:
+                            <span className="ml-1 font-bold">
+                              Md. Asibuzzaman (Leon)
+                            </span>
+                          </span> */}
+                          {/* <span className="mt-1">
+                            Address:
+                            <span className="ml-1">
+                              Chanchra More, Jashore, Bangladesh.
+                            </span>
+                          </span> */}
+                        </span>
+                        <span className="table_1 mt-10">
+                          <table className="border-collapse w-[737px]">
+                            <tr>
+                              <td>
+                                <span className="flex justify-between px-2">
+                                  <span>
+                                    <span>
+                                      Order Id:
+                                      <span className="ml-2 font-bold">
+                                        {orderItems[0].order.orderId}
+                                      </span>
+                                    </span>
+                                  </span>
+                                  <span>
+                                    <span>
+                                      Sold By:
+                                      <span
+                                        className={`${
+                                          orderItems[0]?.user?.name ===
+                                          undefined
+                                            ? "font-[400]"
+                                            : ""
+                                        } ml-2 font-bold`}
+                                      >
+                                        {orderItems[0]?.user?.name === undefined
+                                          ? "No Name"
+                                          : orderItems[0]?.user?.name}
+                                      </span>
+                                    </span>
+                                  </span>
+                                </span>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <span className="flex justify-between px-2">
+                                  <span>
+                                    <span>
+                                      Date:
+                                      <span className="ml-2 font-bold">
+                                        <Moment
+                                          tz="Asia/Dhaka"
+                                          format="DD/MM/YYYY  -  HH:MM:SS"
+                                          date={orderItems[0]?.createdAt}
+                                        />
+                                      </span>
+                                    </span>
+                                  </span>
+                                  <span>
+                                    <span>
+                                      Purchased By:
+                                      <span
+                                        className={`${
+                                          orderItems[0]?.customer?.name === null
+                                            ? "font-[400]"
+                                            : ""
+                                        } ml-2 font-bold`}
+                                      >
+                                        {orderItems[0]?.customer?.name === null
+                                          ? "No Name"
+                                          : orderItems[0]?.customer?.name}
+                                      </span>
+                                    </span>
+                                  </span>
+                                </span>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <span className="px-2">
+                                  <span>
+                                    Status:
+                                    <span className="capitalize ml-1">
+                                      {orderItems[0]?.status === "due" ? (
+                                        <span className="font-bold">due</span>
+                                      ) : (
+                                        <span className="font-bold">paid</span>
+                                      )}
+                                    </span>
+                                  </span>
+                                </span>
+                              </td>
+                            </tr>
+                          </table>
+                        </span>
+                        <span className="table_2 flex items-center mt-5 w-[737px]">
+                          <table className="border-collapse border border-black">
+                            <thead>
+                              <tr>
+                                <th className="border border-black px-2">
+                                  S/L
+                                </th>
+                                <th className="border border-black px-2 w-[508px]">
+                                  Items / Descriptions
+                                </th>
+                                <th className="border border-black px-2">
+                                  Qty.
+                                </th>
+                                <th className="border border-black px-2">
+                                  Unit Price
+                                </th>
+                                <th className="border border-black px-2">
+                                  Total Price
+                                </th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {orderItems?.map(
+                                (orderItem: any, index: number) => (
+                                  <ReadyToPrintTable
+                                    key={index}
+                                    count={index}
+                                    orderItems={orderItems}
+                                    orderItem={orderItem}
+                                  ></ReadyToPrintTable>
+                                )
+                              )}
+                            </tbody>
+                          </table>
+                        </span>
+                        <span className="table_3 flex justify-end w-[737px] pb-3 pr-3 pt-3 border border-black">
+                          <table className="text-end font-bold">
+                            <tr>
+                              <td className="px-2">
+                                <span>Total Price&nbsp;:</span>
+                              </td>
+                              <td className="px-2">
+                                <span>{subtotal}</span>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td className="px-2">
+                                <span>
+                                  Discount&nbsp;:
+                                  <span className="ml-3">
+                                    ({Number(orderItems[0]?.percentage)}%)
+                                  </span>
+                                </span>
+                              </td>
+                              <td className="px-2">
+                                <span>
+                                  {orderItems[0]?.percentage === "0.00"
+                                    ? "0.00"
+                                    : Number(discountPrice).toFixed(2)}{" "}
+                                </span>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td className="px-2">
+                                <span>Paid&nbsp;:</span>
+                              </td>
+                              <td className="px-2">
+                                <span>{orderItems[0]?.deposit}</span>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td className="px-2">
+                                <span>Due&nbsp;:</span>
+                              </td>
+                              <td className="px-2">
+                                <span>
+                                  {orderItems[0]?.due === null
+                                    ? "0.00"
+                                    : Number(
+                                        Number(orderItems[0]?.due?.amount) -
+                                          Number(orderItems[0]?.due?.collection)
+                                      ).toFixed(2)}
+                                </span>
+                              </td>
+                            </tr>
+                            <tr className="">
+                              <td className="px-2">
+                                <span>Change&nbsp;:</span>
+                              </td>
+                              <td className="px-2">
+                                <span>{orderItems[0]?.change}</span>
+                              </td>
+                            </tr>
+                            {/* <tr className="border-t-2 border-black">
+                              {orderItems[0]?.due === null ? (
+                                <span className="flex">
+                                  <span></span>
+                                  <span>
+                                    <span>Grand Total:</span>
+                                    <span>{Number(duePrice).toFixed(2)}</span>
+                                  </span>
+                                </span>
+                              ) : (
+                                <span className="">
+                                  <span></span>
+                                  <span>
+                                    <span>Due:</span>
+                                    {Number(
+                                      Number(orderItems[0]?.due?.amount) -
+                                        Number(orderItems[0]?.due?.collection)
+                                    ).toFixed(2)}
+                                  </span>
+                                </span>
+                              )}
+                            </tr> */}
+                          </table>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </span>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* order modal detail */}
       {modal && (
         <div className="modal h-full w-full fixed bg-gray-400 bg-opacity-50 flex justify-center items-center z-10">
@@ -475,18 +779,6 @@ const AllOrder = () => {
                             </span>
                             <span className="text-gray-600">Cash</span>
                           </div>
-                        </div>
-
-                        <div className="flex justify-end px-5 py-3">
-                          <button
-                            onClick={() => window.print()}
-                            className="flex justify-center items-center font-[500] bg-red-500 text-white hover:bg-red-400 hover:text-white rounded-md py-1 px-3 whitespace-nowrap"
-                          >
-                            <span>
-                              <AiFillPrinter className="" />
-                            </span>
-                            <span className="ml-2">Print Memo</span>
-                          </button>
                         </div>
                       </div>
                     </div>
@@ -898,6 +1190,7 @@ const AllOrder = () => {
                             handleGetId={handleGetId}
                             toggleModal={toggleModal}
                             toggleReturnModal={toggleReturnModal}
+                            toggleModalPrint={toggleModalPrint}
                           ></OrderTable>
                         ))}
                     </tbody>

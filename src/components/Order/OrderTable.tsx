@@ -7,6 +7,7 @@ const OrderTable = ({
   handleGetId,
   toggleModal,
   toggleReturnModal,
+  toggleModalPrint,
 }: any) => {
   const { id, orderId, date, createdAt } = order;
   const employeeName = order?.sale[0]?.user?.name;
@@ -51,17 +52,23 @@ const OrderTable = ({
         </td>
         <td className="py-2 px-6">
           <button
+            onClick={() => (handleGetId(id), toggleModalPrint()) as any}
+            className="font-black text-red-500 hover:text-white hover:font-black hover:bg-red-500 rounded-sm px-2 py-1"
+          >
+            Print
+          </button>
+          <button
             onClick={() => (handleGetId(id), toggleModal()) as any}
-            className="font-black text-sky-500 hover:text-white hover:font-black hover:bg-sky-500 rounded-sm px-2 py-1"
+            className="font-black text-sky-500 hover:text-white hover:font-black hover:bg-sky-500 rounded-sm px-2 py-1 mx-2"
           >
             Details
           </button>
-          <button
+          {/* <button
             onClick={() => handleGetId(id)}
-            className="font-black text-green-500 hover:text-white hover:font-black hover:bg-green-500 rounded-sm px-2 py-1 mx-2"
+            className="font-black text-green-500 hover:text-white hover:font-black hover:bg-green-500 rounded-sm px-2 py-1 mr-1"
           >
             Edit
-          </button>
+          </button> */}
           <button
             onClick={() => (handleGetId(id), toggleReturnModal()) as any}
             className="font-black text-orange-500 hover:text-white hover:font-black hover:bg-orange-500 rounded-sm px-2 py-1"

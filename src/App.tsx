@@ -34,6 +34,7 @@ import FilterSale from "./components/FilterSale/FilterSale";
 import AllBarcode from "./components/Barcode/AllBarcode";
 import AddBarcode from "./components/Barcode/AddBarcode";
 import FilterDue from "./components/Due/FilterDue";
+import ReadyToPrint from "./components/Order/ReadyToPrint";
 export const StockContext = React.createContext({} as any);
 export const IdContext = React.createContext([] as any);
 
@@ -83,6 +84,7 @@ function App() {
               <Route path="/due/:filter" element={<FilterDue />} />
 
               <Route path="/setting" element={<Setting />} />
+              <Route path="/print/all" element={<ReadyToPrint />} />
 
               <Route path="/about" element={<About />} />
             </Route>
