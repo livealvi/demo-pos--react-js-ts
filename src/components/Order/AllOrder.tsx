@@ -284,212 +284,220 @@ const AllOrder = () => {
                       </span>
                     </span>
                   </div>
-                  <div ref={componentRef} className="modal_body m-4 p-5">
-                    <div className="flex flex-col justify-between">
-                      <div className="flex flex-col items-center">
-                        <span className="flex flex-col items-center">
-                          <span className="text-[24px] font-black">
-                            {shopName?.info?.name}
-                          </span>
-                          <span className="mb-1">{shopName?.info?.tag}</span>
-                          {/* <span>
+                  <div className="main h-[90vh] overflow-y-scroll scroll-smooth">
+                    <div ref={componentRef} className="modal_body m-4 p-5">
+                      <div className="flex flex-col justify-between">
+                        <div className="flex flex-col items-center">
+                          <span className="flex flex-col items-center">
+                            <span className="text-[24px] font-black">
+                              {shopName?.info?.name}
+                            </span>
+                            <span className="mb-1">{shopName?.info?.tag}</span>
+                            {/* <span>
                             Founder:
                             <span className="ml-1 font-bold">
                               Md. Showkotuzzaman (Robi)
                             </span>
                           </span> */}
-                          {/* <span>
+                            {/* <span>
                             Pro:
                             <span className="ml-1 font-bold">
                               Md. Asibuzzaman (Leon)
                             </span>
                           </span> */}
-                          {/* <span className="mt-1">
+                            {/* <span className="mt-1">
                             Address:
                             <span className="ml-1">
                               Chanchra More, Jashore, Bangladesh.
                             </span>
                           </span> */}
-                        </span>
-                        <span className="table_1 mt-10">
-                          <table className="border-collapse w-[737px]">
-                            <tr>
-                              <td>
-                                <span className="flex justify-between px-2">
-                                  <span>
-                                    <span>
-                                      Order Id:
-                                      <span className="ml-2 font-bold">
-                                        {orderItems[0].order.orderId}
-                                      </span>
-                                    </span>
-                                  </span>
-                                  <span>
-                                    <span>
-                                      Sold By:
-                                      <span
-                                        className={`${
-                                          orderItems[0]?.user?.name ===
-                                          undefined
-                                            ? "font-[400]"
-                                            : ""
-                                        } ml-2 font-bold`}
-                                      >
-                                        {orderItems[0]?.user?.name === undefined
-                                          ? "No Name"
-                                          : orderItems[0]?.user?.name}
-                                      </span>
-                                    </span>
-                                  </span>
-                                </span>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <span className="flex justify-between px-2">
-                                  <span>
-                                    <span>
-                                      Date:
-                                      <span className="ml-2 font-bold">
-                                        <Moment
-                                          tz="Asia/Dhaka"
-                                          format="DD/MM/YYYY  -  HH:MM:SS"
-                                          date={orderItems[0]?.createdAt}
-                                        />
-                                      </span>
-                                    </span>
-                                  </span>
-                                  <span>
-                                    <span>
-                                      Purchased By:
-                                      <span
-                                        className={`${
-                                          orderItems[0]?.customer?.name === null
-                                            ? "font-[400]"
-                                            : ""
-                                        } ml-2 font-bold`}
-                                      >
-                                        {orderItems[0]?.customer?.name === null
-                                          ? "No Name"
-                                          : orderItems[0]?.customer?.name}
-                                      </span>
-                                    </span>
-                                  </span>
-                                </span>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <span className="px-2">
-                                  <span>
-                                    Status:
-                                    <span className="capitalize ml-1">
-                                      {orderItems[0]?.status === "due" ? (
-                                        <span className="font-bold">due</span>
-                                      ) : (
-                                        <span className="font-bold">paid</span>
-                                      )}
-                                    </span>
-                                  </span>
-                                </span>
-                              </td>
-                            </tr>
-                          </table>
-                        </span>
-                        <span className="table_2 flex items-center mt-5 w-[737px]">
-                          <table className="border-collapse border border-black">
-                            <thead>
+                          </span>
+                          <span className="table_1 mt-10">
+                            <table className="border-collapse w-[737px]">
                               <tr>
-                                <th className="border border-black px-2">
-                                  S/L
-                                </th>
-                                <th className="border border-black px-2 w-[508px]">
-                                  Items / Descriptions
-                                </th>
-                                <th className="border border-black px-2">
-                                  Qty.
-                                </th>
-                                <th className="border border-black px-2">
-                                  Unit Price
-                                </th>
-                                <th className="border border-black px-2">
-                                  Total Price
-                                </th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              {orderItems?.map(
-                                (orderItem: any, index: number) => (
-                                  <ReadyToPrintTable
-                                    key={index}
-                                    count={index}
-                                    orderItems={orderItems}
-                                    orderItem={orderItem}
-                                  ></ReadyToPrintTable>
-                                )
-                              )}
-                            </tbody>
-                          </table>
-                        </span>
-                        <span className="table_3 flex justify-end w-[737px] pb-3 pr-3 pt-3 border border-black">
-                          <table className="text-end font-bold">
-                            <tr>
-                              <td className="px-2">
-                                <span>Total Price&nbsp;:</span>
-                              </td>
-                              <td className="px-2">
-                                <span>{subtotal}</span>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td className="px-2">
-                                <span>
-                                  Discount&nbsp;:
-                                  <span className="ml-3">
-                                    ({Number(orderItems[0]?.percentage)}%)
+                                <td>
+                                  <span className="flex justify-between px-2">
+                                    <span>
+                                      <span>
+                                        Order Id:
+                                        <span className="ml-2 font-bold">
+                                          {orderItems[0].order.orderId}
+                                        </span>
+                                      </span>
+                                    </span>
+                                    <span>
+                                      <span>
+                                        Sold By:
+                                        <span
+                                          className={`${
+                                            orderItems[0]?.user?.name ===
+                                            undefined
+                                              ? "font-[400]"
+                                              : ""
+                                          } ml-2 font-bold`}
+                                        >
+                                          {orderItems[0]?.user?.name ===
+                                          undefined
+                                            ? "No Name"
+                                            : orderItems[0]?.user?.name}
+                                        </span>
+                                      </span>
+                                    </span>
                                   </span>
-                                </span>
-                              </td>
-                              <td className="px-2">
-                                <span>
-                                  {orderItems[0]?.percentage === "0.00"
-                                    ? "0.00"
-                                    : Number(discountPrice).toFixed(2)}{" "}
-                                </span>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td className="px-2">
-                                <span>Paid&nbsp;:</span>
-                              </td>
-                              <td className="px-2">
-                                <span>{orderItems[0]?.deposit}</span>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td className="px-2">
-                                <span>Due&nbsp;:</span>
-                              </td>
-                              <td className="px-2">
-                                <span>
-                                  {orderItems[0]?.due === null
-                                    ? "0.00"
-                                    : Number(
-                                        Number(orderItems[0]?.due?.amount) -
-                                          Number(orderItems[0]?.due?.collection)
-                                      ).toFixed(2)}
-                                </span>
-                              </td>
-                            </tr>
-                            <tr className="">
-                              <td className="px-2">
-                                <span>Change&nbsp;:</span>
-                              </td>
-                              <td className="px-2">
-                                <span>{orderItems[0]?.change}</span>
-                              </td>
-                            </tr>
-                            {/* <tr className="border-t-2 border-black">
+                                </td>
+                              </tr>
+                              <tr>
+                                <td>
+                                  <span className="flex justify-between px-2">
+                                    <span>
+                                      <span>
+                                        Date:
+                                        <span className="ml-2 font-bold">
+                                          <Moment
+                                            tz="Asia/Dhaka"
+                                            format="DD/MM/YYYY  -  HH:MM:SS"
+                                            date={orderItems[0]?.createdAt}
+                                          />
+                                        </span>
+                                      </span>
+                                    </span>
+                                    <span>
+                                      <span>
+                                        Purchased By:
+                                        <span
+                                          className={`${
+                                            orderItems[0]?.customer?.name ===
+                                            null
+                                              ? "font-[400]"
+                                              : ""
+                                          } ml-2 font-bold`}
+                                        >
+                                          {orderItems[0]?.customer?.name ===
+                                          null
+                                            ? "No Name"
+                                            : orderItems[0]?.customer?.name}
+                                        </span>
+                                      </span>
+                                    </span>
+                                  </span>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td>
+                                  <span className="px-2">
+                                    <span>
+                                      Status:
+                                      <span className="capitalize ml-1">
+                                        {orderItems[0]?.status === "due" ? (
+                                          <span className="font-bold">due</span>
+                                        ) : (
+                                          <span className="font-bold">
+                                            paid
+                                          </span>
+                                        )}
+                                      </span>
+                                    </span>
+                                  </span>
+                                </td>
+                              </tr>
+                            </table>
+                          </span>
+                          <span className="table_2 flex items-center mt-5 w-[737px]">
+                            <table className="border-collapse border border-black">
+                              <thead>
+                                <tr>
+                                  <th className="border border-black px-2">
+                                    S/L
+                                  </th>
+                                  <th className="border border-black px-2 w-[508px]">
+                                    Items / Descriptions
+                                  </th>
+                                  <th className="border border-black px-2">
+                                    Qty.
+                                  </th>
+                                  <th className="border border-black px-2">
+                                    Unit Price
+                                  </th>
+                                  <th className="border border-black px-2">
+                                    Total Price
+                                  </th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                {orderItems?.map(
+                                  (orderItem: any, index: number) => (
+                                    <ReadyToPrintTable
+                                      key={index}
+                                      count={index}
+                                      orderItems={orderItems}
+                                      orderItem={orderItem}
+                                    ></ReadyToPrintTable>
+                                  )
+                                )}
+                              </tbody>
+                            </table>
+                          </span>
+                          <span className="table_3 flex justify-end w-[737px] pb-3 pr-3 pt-3 border border-black">
+                            <table className="text-end font-bold">
+                              <tr>
+                                <td className="px-2">
+                                  <span>Total Price&nbsp;:</span>
+                                </td>
+                                <td className="px-2">
+                                  <span>{subtotal}</span>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td className="px-2">
+                                  <span>
+                                    Discount&nbsp;:
+                                    <span className="ml-3">
+                                      ({Number(orderItems[0]?.percentage)}%)
+                                    </span>
+                                  </span>
+                                </td>
+                                <td className="px-2">
+                                  <span>
+                                    {orderItems[0]?.percentage === "0.00"
+                                      ? "0.00"
+                                      : Number(discountPrice).toFixed(2)}{" "}
+                                  </span>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td className="px-2">
+                                  <span>Paid&nbsp;:</span>
+                                </td>
+                                <td className="px-2">
+                                  <span>{orderItems[0]?.deposit}</span>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td className="px-2">
+                                  <span>Due&nbsp;:</span>
+                                </td>
+                                <td className="px-2">
+                                  <span>
+                                    {orderItems[0]?.due === null
+                                      ? "0.00"
+                                      : Number(
+                                          Number(orderItems[0]?.due?.amount) -
+                                            Number(
+                                              orderItems[0]?.due?.collection
+                                            )
+                                        ).toFixed(2)}
+                                  </span>
+                                </td>
+                              </tr>
+                              <tr className="">
+                                <td className="px-2">
+                                  <span>Change&nbsp;:</span>
+                                </td>
+                                <td className="px-2">
+                                  <span>{orderItems[0]?.change}</span>
+                                </td>
+                              </tr>
+                              {/* <tr className="border-t-2 border-black">
                               {orderItems[0]?.due === null ? (
                                 <span className="flex">
                                   <span></span>
@@ -511,8 +519,9 @@ const AllOrder = () => {
                                 </span>
                               )}
                             </tr> */}
-                          </table>
-                        </span>
+                            </table>
+                          </span>
+                        </div>
                       </div>
                     </div>
                   </div>
