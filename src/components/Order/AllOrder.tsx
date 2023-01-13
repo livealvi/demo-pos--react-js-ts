@@ -469,7 +469,7 @@ const AllOrder = () => {
                                   <span>Paid&nbsp;:</span>
                                 </td>
                                 <td className="px-2">
-                                  <span>{orderItems[0]?.deposit}</span>
+                                  <span>{orderItems[0]?.due?.collection}</span>
                                 </td>
                               </tr>
                               <tr>

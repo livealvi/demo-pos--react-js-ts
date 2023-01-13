@@ -44,7 +44,13 @@ const CategoryItemTable = ({
         {/* <td className="py-2 px-6">{1 + count}</td> */}
         <td className="py-2 px-6">{categoryName.name}</td>
         <td className="py-2 px-6">{name}</td>
-        <td className="py-2 px-6">{description}</td>
+        <td className="py-2 px-6">
+          {description.length >= 20 ? (
+            <span>{description.substring(0, 33)}...</span>
+          ) : (
+            <span className="whitespace-nowrap">{description}</span>
+          )}
+        </td>
         <td className="py-2 px-6">{mrp}</td>
         <td className="py-2 px-6">{costing}</td>
         <td className="py-2 px-6">{wholesale}</td>

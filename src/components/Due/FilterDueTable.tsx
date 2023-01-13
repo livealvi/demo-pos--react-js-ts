@@ -34,7 +34,7 @@ const FilterDueTable = ({
         <td className="py-2 px-6">{dueId}</td>
         <td
           className={`${
-            collection >= amount ? "text-green-600" : "text-red-600"
+            collection === amount ? "text-green-600" : "text-red-600"
           } font-semibold py-2 px-6 whitespace-nowrap`}
         >
           {name}
