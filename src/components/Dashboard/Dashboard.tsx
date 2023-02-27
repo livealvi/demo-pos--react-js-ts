@@ -10,6 +10,7 @@ import SaleHistory from "./SaleHistory";
 import { url } from "../../service/getAllUrl";
 import { StockContext } from "../../App";
 import CheckRole from "../../hooks/CheckRole";
+import SaleByYear from "../Chart/SaleByYearChart/SaleByYear";
 
 const Dashboard = () => {
   let [updateData, setUpdateData] = useContext(StockContext);
@@ -63,7 +64,6 @@ const Dashboard = () => {
       <div id="dashboard" className="dashboard w-screen bg-white">
         <div className="text-slate-900 px-5 py-6">
           <span className="flex items-center gap-2 font-[900]  text-gray-700 ">
-            {" "}
             <span>Dashboard</span>
           </span>
           <div className="mt-5">
@@ -79,6 +79,10 @@ const Dashboard = () => {
               </div>
             </div>
           </div>
+        </div>
+        <hr />
+        <div>
+          <SaleByYear />
         </div>
       </div>
     </>

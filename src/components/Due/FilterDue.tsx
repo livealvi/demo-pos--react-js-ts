@@ -681,7 +681,7 @@ const FilterDue = () => {
                                         : "text-red-600"
                                     }`}
                                   >
-                                    {Number(dueItems.amount).toFixed(2)}
+                                    {Number(dueItems.remain).toFixed(2)}
                                   </span>
                                 </span>
                                 {editDue.collection === undefined ? (

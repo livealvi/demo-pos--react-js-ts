@@ -19,12 +19,23 @@ const FilterDueTable = ({
     updatedAt,
     amount,
     remain,
+    change,
     fullPaidDate,
     collection,
     customerId,
     paid,
   } = due;
   const { name } = due?.customer;
+
+  console.log("collection", collection);
+  console.log("amount", amount);
+
+  if (collection <= amount) {
+    console.log("true");
+  } else {
+    console.log("false");
+  }
+
   return (
     <>
       <tr className="bg-white hover:bg-[#f0f4f8] border-b border-gray-300 text-center hover:text-black uppercase">
@@ -34,7 +45,7 @@ const FilterDueTable = ({
         <td className="py-2 px-6">{dueId}</td>
         <td
           className={`${
-            collection === amount ? "text-green-600" : "text-red-600"
+            collection >= amount ? "text-green-600" : "text-red-600"
           } font-semibold py-2 px-6 whitespace-nowrap`}
         >
           {name}
@@ -46,7 +57,9 @@ const FilterDueTable = ({
         </td>
         <td
           className={`${
-            collection <= amount ? "text-green-600" : "text-red-600"
+            collection === amount || collection > amount
+              ? "text-green-600"
+              : "text-red-600"
           } font-semibold py-2 px-6 whitespace-nowrap`}
         >
           {amount}
@@ -67,7 +80,7 @@ const FilterDueTable = ({
               ) : (
                 <span>
                   {collection <= amount ? (
-                    ""
+                    collection
                   ) : (
                     <span className="text-green-600">{collection}</span>
                   )}
