@@ -54,14 +54,17 @@ const SaleByYearChart = ({ yearBySale }: any) => {
   const data = useMemo(
     () => ({
       labels: !!yearBySale?.saleByAllMonth
-        ? yearBySale?.saleByAllMonth.map((y: { date: any }) =>
-            moment(y.date).tz("Asia/Dhaka").format("MMMM")
+        ? yearBySale?.saleByAllMonth.map((y: { month: any }) =>
+            moment()
+              .month(y.month - 1)
+              .tz("Asia/Dhaka")
+              .format("MMMM")
           )
         : [],
 
       datasets: [
         {
-          label: "New Confirmed",
+          label: "Total Sale",
           data: !!yearBySale?.saleByAllMonth
             ? yearBySale?.saleByAllMonth.map((y: { count: any }) => y.count)
             : [],
