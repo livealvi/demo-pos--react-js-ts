@@ -109,8 +109,8 @@ const Login = () => {
   }
 
   return (
-    <div className="text-slate-900 bg-[#58728c] w-full mx-auto grid justify-center items-center h-screen">
-      <div className="p-5 bg-white rounded-md md:w-[400px] transition duration-900 hover:border-gray-200 hover:shadow-lg hover:border">
+    <div className="text-slate-900 bg-[#58728c] w-full grid content-center h-screen absolute">
+      <div className="p-5 bg-white rounded-md md:w-[400px] mx-auto transition duration-900 hover:border-gray-200 hover:shadow-lg hover:border">
         <div className="text-center">
           <span className="text-[22px] md:text-3xl  font-semibold text-gray-500">
             Hi, Welcome Back
