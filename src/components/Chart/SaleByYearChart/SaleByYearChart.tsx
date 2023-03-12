@@ -28,9 +28,10 @@ export const options = {
       position: "top" as const,
       display: false,
     },
+
     title: {
       display: true,
-      text: "Chart.js Bar Chart",
+      text: "Sold by Year",
     },
   },
 };

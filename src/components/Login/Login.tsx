@@ -109,33 +109,37 @@ const Login = () => {
   }
 
   return (
-    <div className="text-slate-900 bg-[#f4f7fa] flex items-center justify-center h-screen">
-      <div className="p-5 bg-white  rounded-md md:w-[400px] h-auto transition duration-900 hover:border-gray-200  hover:shadow-lg hover:border">
-        <div className="flex py-5 mb-1 flex-col items-center">
-          <span className="text-[30px] font-[600] pb-3 text-gray-500">
+    <div className="text-slate-900 bg-[#58728c] w-full mx-auto flex items-center justify-center min-h-screen">
+      <div className="p-5 bg-white rounded-md md:w-[400px] transition duration-900 hover:border-gray-200 hover:shadow-lg hover:border">
+        <div className="text-center">
+          <span className="text-[22px] md:text-3xl  font-semibold text-gray-500">
             Hi, Welcome Back
           </span>
           <div>
             <div className="flex items-center justify-center">
-              <img className="h-[120px]" src={logo} alt="Belarus Corner" />
+              <img
+                className="h-[100px] md:h-32"
+                src={logo}
+                alt="Belarus Corner"
+              />
             </div>
             <div className="flex flex-col justify-center items-center mt-1">
-              <span className="text-[26px] font-[300] mb-2 text-gray-700">
+              <span className="text-lg md:text-2xl font-[300] mb-2 text-gray-700">
                 {setting?.info?.name}
               </span>
 
-              <span className="text-[16px] font-[300] text-gray-700">
+              <span className="text-xs  md:text-sm font-[300] text-gray-700">
                 {setting?.info?.tag}
               </span>
             </div>
           </div>
         </div>
-        <div className="flex justify-center pt-5 pb-10">
+        <div className="flex justify-center pt-5 pb-9">
           <form action="" onSubmit={handleSubmit(handleLoginSubmit) as any}>
             <div className="flex justify-center flex-col w-full md:w-[300px]">
               {" "}
               <div className="email">
-                <label className="font-[300]">Email</label>
+                {/* <label className="font-[300]">Email</label> */}
                 <div className="relative mt-3">
                   <div className="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
                     <FiMail />
@@ -153,8 +157,8 @@ const Login = () => {
                 <span className="text-red-500">{errors.email?.message}</span>
               </div>
               <div className="email mt-2">
-                <label className="font-[300]">Password</label>
-                <div className="relative mt-3">
+                {/* <label className="font-[300]">Password</label> */}
+                <div className="relative mt-2">
                   <div className="flex absolute inset-y-0 left-0  items-center px-3 pointer-events-none">
                     <span className="">
                       <AiFillUnlock />
@@ -171,7 +175,7 @@ const Login = () => {
                   />
                 </div>
                 <span className="text-red-500">{errors.password?.message}</span>
-                <div className="relative mt-10">
+                <div className="relative mt-6">
                   <button
                     type="submit"
                     onSubmit={handleLoginSubmit}
