@@ -15,16 +15,12 @@ const Stock = ({ stock }: any) => {
           </div>
           <div className="flex flex-col pt-2 pl-6 text-white text-xs">
             <div>
-              <span className="font-medium">Item:</span>{" "}
-              <span className="font-[900]">
-                {Number(stock?.total_stock[0]?.item)}
-              </span>
+              <span className="font-black mr-1">Item:</span>
+              <span className="">{Number(stock?.total_stock[0]?.item)}</span>
             </div>
             <div>
-              <span className="font-medium">Product:</span>{" "}
-              <span className="font-[900]">
-                {Number(stock?.total_stock[0]?.stock)}
-              </span>
+              <span className="font-black mr-1">Product:</span>
+              <span className="">{Number(stock?.total_stock[0]?.stock)}</span>
             </div>
           </div>
         </div>

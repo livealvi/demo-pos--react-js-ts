@@ -15,16 +15,14 @@ const SaleHistory = ({ stock }: any) => {
           </div>
           <div className="flex flex-col pt-2 pl-6 text-white text-xs">
             <div>
-              <span className="font-medium">Sold:</span>{" "}
-              <span className="font-[900]">
+              <span className="font-black mr-1">Sold:</span>
+              <span className="font">
                 {Number(stock?.total_sold[0].sold_stock)}
               </span>
             </div>
             <div>
-              <span className="font-medium">Item:</span>{" "}
-              <span className="font-[900]">
-                {Number(stock?.total_sold[0].item)}
-              </span>
+              <span className="font-black mr-1">Item:</span>
+              <span className="">{Number(stock?.total_sold[0].item)}</span>
             </div>
           </div>
         </div>

@@ -251,14 +251,14 @@ const Sidebar = ({ children }: any) => {
 
   if (loadSpinner.length === 0)
     return (
-      <div className="flex justify-center items-center h-screen w-screen">
+      <div className="flex justify-center items-center h-screen  w-screen">
         <HashLoader color="#51E5FF" size={70} />
       </div>
     );
 
   return (
     <>
-      <div className="main-container leading-none h-screen border-r-200 flex flex-col justify-between bg-white hover:border-r-sky-300 border-r-4">
+      <div className="sidebar leading-none h-screen  border-r-200 flex flex-col justify-between bg-white hover:border-r-sky-300 border-r-4">
         <motion.div
           animate={{
             width: isOpen ? "245px" : "55px",
@@ -267,9 +267,9 @@ const Sidebar = ({ children }: any) => {
               type: "tween",
             },
           }}
-          className="h-screen overflow-y-auto first-letter:h-screen  text-current"
+          className="  overflow-y-auto first-letter:   text-current"
         >
-          <div className="flex flex-col justify-between h-screen pb-[20px]">
+          <div className="flex flex-col justify-between   pb-[20px]">
             <div>
               <div className="logo flex items-center justify-between px-5 py-5">
                 <AnimatePresence>

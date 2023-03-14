@@ -334,18 +334,18 @@ const AllCategory = () => {
         </div>
       )}
 
-      <div className="text-slate-900 px-5 py-6 w-full bg-[#f4f7fa]">
-        <span className="flex items-center gap-2 font-[900]">
+      <div className="text-slate-900  bg-[#f4f7fa]">
+        <span className="flex items-center gap-2 font-black">
           <NavLink to="/dashboard">
             <span className="underline hover:text-blue-500 ">Dashboard</span>
           </NavLink>
-          <MdArrowForwardIos className="font-[900]" />
+          <MdArrowForwardIos className="font-black" />
           <span>Category</span>
-          <MdArrowForwardIos className="font-[900]" />
+          <MdArrowForwardIos className="font-black" />
           <span>View All</span>
         </span>
-        <div className="mt-5">
-          <div className="px-5 py-5  h-[85vh] bg-white rounded-md">
+        <div className="">
+          <div className="px-5 py-5 bg-white rounded-md">
             <div className="rounded-sm ">
               <div className="search_box pb-4 bg-white">
                 <label className="sr-only">Search</label>
