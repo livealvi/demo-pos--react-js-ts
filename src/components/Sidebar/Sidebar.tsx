@@ -260,7 +260,7 @@ const Sidebar = ({ children }: any) => {
       <div
         className={`${
           isOpen ? "w-[245px]" : "w-[55px]"
-        }  sidebar leading-none max-h-screen  border-r-200 flex flex-col justify-between bg-white hover:border-r-sky-300 border-r-4`}
+        }  sidebar leading-none h-screen  border-r-200 flex flex-col justify-between bg-white hover:border-r-sky-300 border-r-4`}
       >
         <div
           // animate={{
