@@ -344,7 +344,7 @@ const AllCategory = () => {
           <MdArrowForwardIos className="font-black" />
           <span>View All</span>
         </span>
-        <div className="">
+        <div className="mt-5">
           <div className="px-5 py-5 bg-white rounded-md">
             <div className="rounded-sm ">
               <div className="search_box pb-4 bg-white">
@@ -377,7 +377,7 @@ const AllCategory = () => {
                   />
                 </div>
               </div>
-              <div className="table_box overflow-y-scroll overflow-x-scroll scroll-smooth h-[75vh]">
+              {/* <div className="table_box overflow-y-scroll overflow-x-scroll scroll-smooth h-[75vh]">
                 {categories?.length === 0 ? (
                   <div className="h-[60vh] flex justify-center items-center text-gray-400">
                     <span className="mr-5">
@@ -431,7 +431,7 @@ const AllCategory = () => {
                     </tbody>
                   </table>
                 )}
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
