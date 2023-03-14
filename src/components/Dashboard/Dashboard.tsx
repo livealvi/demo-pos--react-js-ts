@@ -60,14 +60,13 @@ const Dashboard = () => {
   //bg-[#f4f7fa]
   return (
     <>
-      {}
       <div id="dashboard" className="dashboard w-screen bg-white">
         <div className="text-slate-900 px-5 py-6">
           <span className="flex items-center gap-2 font-[900]  text-gray-700 ">
-            <span>Dashboard</span>
+            <span className="text-base">Dashboard</span>
           </span>
           <div className="mt-5">
-            <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+            <div className="grid md:grid-cols-3 grid-cols-1 xs:grid-cols-2 xs:grid-col-5 mx-auto gap-3">
               <div className="">
                 <Stock stock={stock} />
               </div>
@@ -80,10 +79,10 @@ const Dashboard = () => {
             </div>
           </div>
         </div>
-        <hr />
-        <div>
+        {/*<hr />
+        <div> 
           <SaleByYear />
-        </div>
+        </div> */}
       </div>
     </>
   );

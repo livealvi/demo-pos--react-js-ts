@@ -6,30 +6,22 @@ const Stock = ({ stock }: any) => {
   return (
     <>
       <NavLink to="/stock/view/all">
-        <div className="drop-shadow-md border bg-violet-500 hover:bg-violet-600 rounded-xl h-auto w-full p-5">
-          <div className="flex items-center font-open_sans font-extrabold text-slate-700 text-[25px]">
-            <span className="pr-4 text-white">
+        <div className="drop-shadow-md border bg-violet-500 hover:bg-violet-600 w-full h-full rounded-xl p-5">
+          <div className="flex items-center font-open_sans font-extrabold text-white text-sm">
+            <span className="pr-2">
               <FiPackage />
-            </span>{" "}
-            <span className="text-white">Stock</span>
+            </span>
+            <span className="">Stock</span>
           </div>
-          <div className="flex flex-col pt-5 text-white">
+          <div className="flex flex-col pt-2 pl-6 text-white text-xs">
             <div>
-              <span className="font-medium">Total left:</span>{" "}
-              <span className="font-[900]">
-                {Number(
-                  stock?.total_stock[0]?.item - stock?.total_sold[0]?.item
-                )}
-              </span>
-            </div>
-            <div>
-              <span className="font-medium">Total Item:</span>{" "}
+              <span className="font-medium">Item:</span>{" "}
               <span className="font-[900]">
                 {Number(stock?.total_stock[0]?.item)}
               </span>
             </div>
             <div>
-              <span className="font-medium">Total Stock:</span>{" "}
+              <span className="font-medium">Product:</span>{" "}
               <span className="font-[900]">
                 {Number(stock?.total_stock[0]?.stock)}
               </span>
