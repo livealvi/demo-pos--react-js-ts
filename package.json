@@ -16,7 +16,7 @@
     "babel-plugin-transform-remove-console": "^6.9.4",
     "chart.js": "^4.1.2",
     "env-cmd": "^10.1.0",
-    "framer-motion": "^7.5.2",
+    "framer-motion": "^10.3.1",
     "jwt-decode": "^3.1.2",
     "moment-timezone": "^0.5.37",
     "react": "^18.2.0",

@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
 import { GoDashboard, GoListOrdered } from "react-icons/go";
 import { FaBars, FaBoxOpen, FaCashRegister, FaUsersCog } from "react-icons/fa";
 import {
@@ -232,22 +231,22 @@ const Sidebar = ({ children }: any) => {
     }
   };
 
-  const showAnimation = {
-    hidden: {
-      width: 0,
-      opacity: 0,
-      transition: {
-        duration: 0.2,
-      },
-    },
-    show: {
-      width: "auto",
-      opacity: 1,
-      transition: {
-        duration: 0.3,
-      },
-    },
-  };
+  // const showAnimation = {
+  //   hidden: {
+  //     width: 0,
+  //     opacity: 0,
+  //     transition: {
+  //       duration: 0.2,
+  //     },
+  //   },
+  //   show: {
+  //     width: "auto",
+  //     opacity: 1,
+  //     transition: {
+  //       duration: 0.3,
+  //     },
+  //   },
+  // };
 
   if (loadSpinner.length === 0)
     return (
@@ -258,38 +257,37 @@ const Sidebar = ({ children }: any) => {
 
   return (
     <>
-      <div className="sidebar leading-none h-screen  border-r-200 flex flex-col justify-between bg-white hover:border-r-sky-300 border-r-4">
-        <motion.div
-          animate={{
-            width: isOpen ? "245px" : "55px",
-            transition: {
-              duration: 0.2,
-              type: "tween",
-            },
-          }}
-          className="  overflow-y-auto first-letter:   text-current"
+      <div
+        className={`${
+          isOpen ? "w-[245px]" : "w-[55px]"
+        }  sidebar leading-none h-screen  border-r-200 flex flex-col justify-between bg-white hover:border-r-sky-300 border-r-4`}
+      >
+        <div
+          // animate={{
+          //   width: isOpen ? "245px" : "55px",
+          //   transition: {
+          //     duration: 0.2,
+          //     type: "tween",
+          //   },
+          // }}
+          className="overflow-y-auto first-letter:text-current"
         >
-          <div className="flex flex-col justify-between   pb-[20px]">
+          <div className="flex flex-col justify-between pb-[20px]">
             <div>
               <div className="logo flex items-center justify-between px-5 py-5">
-                <AnimatePresence>
-                  {isOpen && (
-                    <motion.div
-                      style={{ width: "165px" }}
-                      variants={showAnimation}
-                      initial="hidden"
-                      exit="hidden"
-                      animate="show"
-                      className="shop_name font-open_sans font-[900] text-[20px] hover:text-red-500"
-                    >
-                      <NavLink className="hover:underline" to="/dashboard">
-                        <span className="shop_name">
-                          {shopName?.info?.name}
-                        </span>
-                      </NavLink>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
+                {isOpen && (
+                  <div
+                    style={{ width: "165px" }}
+                    className={`${
+                      isOpen ? "245px" : "55px"
+                    }  shop_name font-open_sans font-[900] text-[20px] hover:text-red-500`}
+                  >
+                    <NavLink className="hover:underline" to="/dashboard">
+                      <span className="shop_name">{shopName?.info?.name}</span>
+                    </NavLink>
+                  </div>
+                )}
+
                 <div onClick={toggle} className="bars hover:cursor-pointer">
                   {isOpen ? (
                     <VscChromeClose className="text-red-500" />
@@ -306,7 +304,6 @@ const Sidebar = ({ children }: any) => {
                     return (
                       <Dropdown
                         setIsOpen={setIsOpen}
-                        showAnimation={showAnimation}
                         route={route}
                         isOpen={isOpen}
                         key={route.name}
@@ -321,19 +318,10 @@ const Sidebar = ({ children }: any) => {
                       className="main_menu flex items-center text-current gap-5 px-5 py-4 transition duration-150 hover:bg-sky-200 hover:border-r-sky-500 hover:border-r-[7px] hover:transition hover:duration-120"
                     >
                       <div className="icon pr-[10px]">{route.icon}</div>
-                      <AnimatePresence>
-                        {isOpen && (
-                          <motion.div
-                            variants={showAnimation}
-                            initial="hidden"
-                            exit="hidden"
-                            animate="show"
-                            className="whitespace-nowrap"
-                          >
-                            {route.name}
-                          </motion.div>
-                        )}
-                      </AnimatePresence>
+
+                      {isOpen && (
+                        <div className="whitespace-nowrap">{route.name}</div>
+                      )}
                     </NavLink>
                   );
                 })}
@@ -349,24 +337,12 @@ const Sidebar = ({ children }: any) => {
               </div>
               <div className="">
                 <button className="rounded-md hover:t-[#fff]">
-                  <AnimatePresence>
-                    {isOpen && (
-                      <motion.div
-                        variants={showAnimation}
-                        initial="hidden"
-                        exit="hidden"
-                        animate="show"
-                        className=""
-                      >
-                        Logout
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
+                  {isOpen && <div className="">Logout</div>}
                 </button>
               </div>
             </div>
           </div>
-        </motion.div>
+        </div>
       </div>
     </>
   );
